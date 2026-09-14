@@ -1,3 +1,4 @@
+
 # IMPLEMENTATION OF AN IoT-BASED APPLICATION USING RASPBERRY PI
 
 ## Aim
@@ -25,15 +26,16 @@ To implement an IoT-based environmental monitoring application using Raspberry P
 
 # Circuit Diagram
 
----
+---<img width="702" height="575" alt="647757927-228c7c34-60fd-447f-bfc0-96128f539c85" src="https://github.com/user-attachments/assets/78d3b792-f012-4d4d-a594-2d9444c1d3d8" />
 
-**To upload Wokwi circuit diagram**
 
----
 
 # Circuit Connections
 
-
+Component	Raspberry Pi Pico W
+DHT22 VCC	3.3V
+DHT22 DATA	GPIO 21
+DHT22 GND	GND
 
 # IoT Application
 
@@ -60,6 +62,11 @@ Remote Monitoring
 The LED is used as a local status indicator. It turns ON when the measured temperature exceeds the predefined threshold.
 
 ---
+circuit diagram:
+<img width="702" height="575" alt="647757500-eb040783-a3fb-4c4d-b468-4554c192e93d" src="https://github.com/user-attachments/assets/00bbf306-61bd-487a-8016-6e4bc0c51543" />
+
+
+
 
 # Procedure
 
@@ -135,8 +142,27 @@ The LED is used as a local status indicator. It turns ON when the measured tempe
 
 # Program
 
+from machine import Pin
+import dht
+import time
 
-# Observation
+time.sleep(0.1)
+
+sensor = dht.DHT22(Pin(21))
+
+while True:
+    sensor.measure()
+    temperature = sensor.temperature()
+    humidity = sensor.humidity()
+
+    print(f"Temperature = {temperature}")
+    print(f"Humidity = {humidity}")
+    print("----------------------------")
+
+    time.sleep(3)
+# Output
+<img width="1920" height="1080" alt="647757238-3be5ebec-3e68-4db8-ba23-3c80a61f7abd" src="https://github.com/user-attachments/assets/580babe1-6168-4c22-816d-84eb0f3ab7b2" />
+
 
 
 
